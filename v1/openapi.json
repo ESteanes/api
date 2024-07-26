@@ -1672,7 +1672,9 @@
   },
   "security": [
     {
-      "bearer_auth": []
+      "bearer_auth": [
+
+      ]
     }
   ],
   "tags": [
@@ -1757,7 +1759,9 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:5PnWS0GVxCU0O1Oz"
                 },
-                "pathParameters": {},
+                "pathParameters": {
+
+                },
                 "queryParameters": {
                   "page[size]": 1
                 },
@@ -1839,7 +1843,9 @@
                 "pathParameters": {
                   "id": "c2b6547c-6189-42b8-bd63-3993761825a0"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -1909,7 +1915,9 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:WPt3A6fzd8WAsLLP"
                 },
-                "pathParameters": {},
+                "pathParameters": {
+
+                },
                 "queryParameters": {
                   "filter[parent]": "good-life"
                 },
@@ -1934,7 +1942,9 @@
                         }
                       },
                       "children": {
-                        "data": [],
+                        "data": [
+
+                        ],
                         "links": {
                           "related": "https://api.up.com.au/api/v1/categories?filter%5Bparent%5D=hobbies"
                         }
@@ -1961,7 +1971,9 @@
                         }
                       },
                       "children": {
-                        "data": [],
+                        "data": [
+
+                        ],
                         "links": {
                           "related": "https://api.up.com.au/api/v1/categories?filter%5Bparent%5D=restaurants-and-cafes"
                         }
@@ -2016,7 +2028,9 @@
                 "pathParameters": {
                   "id": "home"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -2093,7 +2107,9 @@
                 "pathParameters": {
                   "transactionId": "5a010c5d-a058-465a-956b-93809e8bbf16"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": {
                   "data": {
                     "type": "categories",
@@ -2130,8 +2146,12 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:eOr0TZ0qTMpcXWJj"
                 },
-                "pathParameters": {},
-                "queryParameters": {},
+                "pathParameters": {
+
+                },
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -2154,9 +2174,15 @@
             "x-up:example": {
               "type": "exampleRequestResponse",
               "request": {
-                "headers": {},
-                "pathParameters": {},
-                "queryParameters": {},
+                "headers": {
+
+                },
+                "pathParameters": {
+
+                },
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -2208,7 +2234,9 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:Z4FAB4Tl7jVHdp3w"
                 },
-                "pathParameters": {},
+                "pathParameters": {
+
+                },
                 "queryParameters": {
                   "page[size]": 2
                 },
@@ -2290,7 +2318,9 @@
                 "pathParameters": {
                   "transactionId": "af2f319c-1edd-4386-ad15-5927f7ead3af"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": {
                   "data": [
                     {
@@ -2349,7 +2379,9 @@
                 "pathParameters": {
                   "transactionId": "32e050dc-ed36-462c-9cf6-68d5cb64e289"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": {
                   "data": [
                     {
@@ -2456,7 +2488,8 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:9iP9L9BTmcPc1dTh"
                 },
-                "pathParameters": {},
+                "pathParameters": {
+},
                 "queryParameters": {
                   "page[size]": 1,
                   "filter[tag]": "Pizza Night",
@@ -2574,7 +2607,9 @@
                 "pathParameters": {
                   "id": "7c125426-98b7-4cd5-b899-95db54f5c6c1"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -2640,7 +2675,9 @@
                       "data": null
                     },
                     "tags": {
-                      "data": [],
+                      "data": [
+
+                      ],
                       "links": {
                         "self": "https://api.up.com.au/api/v1/transactions/7c125426-98b7-4cd5-b899-95db54f5c6c1/relationships/tags"
                       }
@@ -2826,7 +2863,9 @@
                         }
                       },
                       "tags": {
-                        "data": [],
+                        "data": [
+
+                        ],
                         "links": {
                           "self": "https://api.up.com.au/api/v1/transactions/d3726667-719e-4202-b889-cee39dfedb70/relationships/tags"
                         }
@@ -2882,7 +2921,9 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:Id50WZYXl1n7Pb7o"
                 },
-                "pathParameters": {},
+                "pathParameters": {
+
+                },
                 "queryParameters": {
                   "page[size]": 1
                 },
@@ -2951,8 +2992,12 @@
                   "Authorization": "Bearer up:demo:Q8zq1dRpYtsGeGHE",
                   "Content-Type": "application/json"
                 },
-                "pathParameters": {},
-                "queryParameters": {},
+                "pathParameters": {
+
+                },
+                "queryParameters": {
+
+                },
                 "payload": {
                   "data": {
                     "attributes": {
@@ -3096,7 +3141,9 @@
                 "pathParameters": {
                   "id": "4485694d-d057-4e7f-879c-0886d2092a71"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": {
@@ -3154,7 +3201,9 @@
                 "pathParameters": {
                   "id": "b2daaed4-4403-44fd-acec-9f9b8ceba5d9"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": null
               },
               "response": null
@@ -3202,7 +3251,9 @@
                 "pathParameters": {
                   "webhookId": "c673b0fa-caee-4d05-9fa6-9a76ee58f838"
                 },
-                "queryParameters": {},
+                "queryParameters": {
+
+                },
                 "payload": ""
               },
               "response": {
