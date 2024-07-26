@@ -48,23 +48,33 @@
         "type": "object",
         "description": "Provides information about the type of card\n",
         "properties": {
-            "method": {
-                "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PurchaseMethodEnum"
-                    }
-                ],
-              "description": "The card method used for this purchase.\n"
-            },
-            "cardNumberSuffix": {
-              "type": "string",
-              "description": "The last four digits of the card used for this transaction.\n"
-            }
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PurchaseMethodEnum"
+              }
+            ],
+            "description": "The card method used for this purchase.\n"
+          },
+          "cardNumberSuffix": {
+            "type": "string",
+            "description": "The last four digits of the card used for this transaction.\n"
+          }
         },
         "required": [
           "method",
           "cardNumberSuffix"
         ]
+      },
+      "PerformingCustomer": {
+        "type": "object",
+        "description": "Information about the customer who performed the transaction.\n",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "The customers Up Name.\n"
+          }
+        }
       },
       "MoneyObject": {
         "type": "object",
@@ -182,17 +192,6 @@
             "required": [
               "self"
             ]
-          }
-        },
-        "attachment": {
-          "type": "object",
-          "nullable": true,
-          "properties": {
-            "data": {
-              "type": "string",
-              "nullable": true,
-              "description": "Not sure what this is"
-            }
           }
         },
         "required": [
@@ -815,6 +814,15 @@
                   }
                 ]
               },
+              "cardPurchaseMethod": {
+                "nullable": true,
+                "description": "Details about what card was used for the transaction.\n",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CardPurchaseObject"
+                  }
+                ]
+              },
               "settledAt": {
                 "type": "string",
                 "format": "date-time",
@@ -826,33 +834,25 @@
                 "format": "date-time",
                 "description": "The date-time at which this transaction was first encountered.\n"
               },
-              "cardPurchaseMethod": {
+              "transactionType": {
+                "type": "string",
+                "nullable": false,
+                "description": "The type of transaction that occurred.\n"
+              },
+              "note": {
+                "type": "string",
                 "nullable": true,
-                "description": "Details about what card was used for the transaction.\n",
+                "description": "Not sure what this is"
+              },
+              "performingCustomer": {
+                "nullable": false,
+                "description": "The Up Name of the person who performed the transaction.\n",
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CardPurchaseObject"
+                    "$ref": "#/components/schemas/PerformingCustomer"
                   }
                 ]
-              },
-            "transactionType": {
-              "type": "string",
-              "nullable": false,
-              "description": "The type of transaction that occurred.\n"
-            },
-            "note": {
-              "type": "string",
-              "nullable": true,
-              "description": "Not sure what this is"
-            },
-            "performingCustomer": {
-              "nullable": false,
-              "description": "The Up Name of the person who performed the transaction.\n",
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/PerformingCustomer"
-                }
-              ]
+              }
             },
             "required": [
               "status",
@@ -866,7 +866,10 @@
               "amount",
               "foreignAmount",
               "settledAt",
-              "createdAt"
+              "createdAt",
+              "trasactionType",
+              "note",
+              "performingCustomer"
             ]
           },
           "relationships": {
@@ -911,6 +914,7 @@
               },
               "transferAccount": {
                 "type": "object",
+                "nullable": true,
                 "properties": {
                   "data": {
                     "type": "object",
@@ -1067,6 +1071,17 @@
                 "required": [
                   "data"
                 ]
+              },
+              "attachment": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Not sure what this is"
+                  }
+                }
               }
             },
             "required": [
@@ -1074,7 +1089,8 @@
               "transferAccount",
               "category",
               "parentCategory",
-              "tags"
+              "tags",
+              "attachment"
             ]
           },
           "links": {
@@ -1656,9 +1672,7 @@
   },
   "security": [
     {
-      "bearer_auth": [
-
-      ]
+      "bearer_auth": []
     }
   ],
   "tags": [
@@ -1744,6 +1758,7 @@
                   "Authorization": "Bearer up:demo:5PnWS0GVxCU0O1Oz"
                 },
                 "pathParameters": {
+                  
                 },
                 "queryParameters": {
                   "page[size]": 1
@@ -1826,8 +1841,7 @@
                 "pathParameters": {
                   "id": "c2b6547c-6189-42b8-bd63-3993761825a0"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -1897,8 +1911,7 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:WPt3A6fzd8WAsLLP"
                 },
-                "pathParameters": {
-                },
+                "pathParameters": {},
                 "queryParameters": {
                   "filter[parent]": "good-life"
                 },
@@ -1923,9 +1936,7 @@
                         }
                       },
                       "children": {
-                        "data": [
-
-                        ],
+                        "data": [],
                         "links": {
                           "related": "https://api.up.com.au/api/v1/categories?filter%5Bparent%5D=hobbies"
                         }
@@ -1952,9 +1963,7 @@
                         }
                       },
                       "children": {
-                        "data": [
-
-                        ],
+                        "data": [],
                         "links": {
                           "related": "https://api.up.com.au/api/v1/categories?filter%5Bparent%5D=restaurants-and-cafes"
                         }
@@ -2009,8 +2018,7 @@
                 "pathParameters": {
                   "id": "home"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -2087,8 +2095,7 @@
                 "pathParameters": {
                   "transactionId": "5a010c5d-a058-465a-956b-93809e8bbf16"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": {
                   "data": {
                     "type": "categories",
@@ -2125,10 +2132,8 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:eOr0TZ0qTMpcXWJj"
                 },
-                "pathParameters": {
-                },
-                "queryParameters": {
-                },
+                "pathParameters": {},
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -2151,12 +2156,9 @@
             "x-up:example": {
               "type": "exampleRequestResponse",
               "request": {
-                "headers": {
-                },
-                "pathParameters": {
-                },
-                "queryParameters": {
-                },
+                "headers": {},
+                "pathParameters": {},
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -2208,8 +2210,7 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:Z4FAB4Tl7jVHdp3w"
                 },
-                "pathParameters": {
-                },
+                "pathParameters": {},
                 "queryParameters": {
                   "page[size]": 2
                 },
@@ -2291,8 +2292,7 @@
                 "pathParameters": {
                   "transactionId": "af2f319c-1edd-4386-ad15-5927f7ead3af"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": {
                   "data": [
                     {
@@ -2351,8 +2351,7 @@
                 "pathParameters": {
                   "transactionId": "32e050dc-ed36-462c-9cf6-68d5cb64e289"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": {
                   "data": [
                     {
@@ -2459,8 +2458,7 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:9iP9L9BTmcPc1dTh"
                 },
-                "pathParameters": {
-                },
+                "pathParameters": {},
                 "queryParameters": {
                   "page[size]": 1,
                   "filter[tag]": "Pizza Night",
@@ -2578,8 +2576,7 @@
                 "pathParameters": {
                   "id": "7c125426-98b7-4cd5-b899-95db54f5c6c1"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -2645,9 +2642,7 @@
                       "data": null
                     },
                     "tags": {
-                      "data": [
-
-                      ],
+                      "data": [],
                       "links": {
                         "self": "https://api.up.com.au/api/v1/transactions/7c125426-98b7-4cd5-b899-95db54f5c6c1/relationships/tags"
                       }
@@ -2833,9 +2828,7 @@
                         }
                       },
                       "tags": {
-                        "data": [
-
-                        ],
+                        "data": [],
                         "links": {
                           "self": "https://api.up.com.au/api/v1/transactions/d3726667-719e-4202-b889-cee39dfedb70/relationships/tags"
                         }
@@ -2891,8 +2884,7 @@
                 "headers": {
                   "Authorization": "Bearer up:demo:Id50WZYXl1n7Pb7o"
                 },
-                "pathParameters": {
-                },
+                "pathParameters": {},
                 "queryParameters": {
                   "page[size]": 1
                 },
@@ -2961,10 +2953,8 @@
                   "Authorization": "Bearer up:demo:Q8zq1dRpYtsGeGHE",
                   "Content-Type": "application/json"
                 },
-                "pathParameters": {
-                },
-                "queryParameters": {
-                },
+                "pathParameters": {},
+                "queryParameters": {},
                 "payload": {
                   "data": {
                     "attributes": {
@@ -3108,8 +3098,7 @@
                 "pathParameters": {
                   "id": "4485694d-d057-4e7f-879c-0886d2092a71"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": null
               },
               "response": {
@@ -3167,8 +3156,7 @@
                 "pathParameters": {
                   "id": "b2daaed4-4403-44fd-acec-9f9b8ceba5d9"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": null
               },
               "response": null
@@ -3216,8 +3204,7 @@
                 "pathParameters": {
                   "webhookId": "c673b0fa-caee-4d05-9fa6-9a76ee58f838"
                 },
-                "queryParameters": {
-                },
+                "queryParameters": {},
                 "payload": ""
               },
               "response": {
