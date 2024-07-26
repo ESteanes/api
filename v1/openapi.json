@@ -814,6 +814,12 @@
                   }
                 ]
               },
+              "settledAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true,
+                "description": "The date-time at which this transaction settled. This field will be\n`null` for transactions that are currently in the `HELD` status.\n"
+              },
               "cardPurchaseMethod": {
                 "nullable": true,
                 "description": "Details about what card was used for the transaction.\n",
@@ -822,12 +828,6 @@
                     "$ref": "#/components/schemas/CardPurchaseObject"
                   }
                 ]
-              },
-              "settledAt": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true,
-                "description": "The date-time at which this transaction settled. This field will be\n`null` for transactions that are currently in the `HELD` status.\n"
               },
               "createdAt": {
                 "type": "string",
